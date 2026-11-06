@@ -5,9 +5,9 @@ const { NotImplementedError } = require('../lib');
  * Given a singly linked list of integers l and an integer k,
  * remove all elements from list l that have a value equal to k.
  *
- * @param {List} l
+ * @param {ListNode} l
  * @param {Number} k
- * @return {List}
+ * @return {ListNode}
  *
  * @example
  * For l = [3, 1, 2, 3, 4, 5] and k = 3,
@@ -21,9 +21,22 @@ const { NotImplementedError } = require('../lib');
  *   }
  * }
  */
-function removeKFromList(/* l, k */) {
-  // Remove line below and write your code here
-  throw new NotImplementedError('Not implemented');
+function removeKFromList(l, k) {
+  // Видаляємо вузли на початку списку, якщо їхнє значення дорівнює k
+  while (l && l.value === k) {
+    l = l.next;
+  }
+
+  let current = l;
+  while (current && current.next) {
+    if (current.next.value === k) {
+      current.next = current.next.next;
+    } else {
+      current = current.next;
+    }
+  }
+
+  return l;
 }
 
 module.exports = {
